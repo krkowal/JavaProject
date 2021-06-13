@@ -1,5 +1,6 @@
 package AnimalTesting;
 
+import java.awt.*;
 import java.util.Objects;
 
 public class Animal  implements IAnimalConfig {
@@ -10,6 +11,7 @@ public class Animal  implements IAnimalConfig {
     private Genes genes;
     public int daysAlive=0;
     public int childrenCount=0;
+    private float startingGameEnergy;
 
 
     public int getEnergy() {
@@ -23,6 +25,7 @@ public class Animal  implements IAnimalConfig {
         this.energyDecreaseByDay=energyDecreaseByDay;
         genes = new Genes();
         this.genes.generateFirstGenes();
+        this.startingGameEnergy=energy;
     }
 
     public Animal(GeneratedMap map, Vector2d position,int energy,int energyDecreaseByDay, Genes genes1, Genes genes2){
@@ -31,6 +34,7 @@ public class Animal  implements IAnimalConfig {
         this.energy=energy;
         this.energyDecreaseByDay=energyDecreaseByDay;
         genes = new Genes(genes1,genes2);
+        this.startingGameEnergy=map.getAnimalEnergy();
     }
 
     @Override
@@ -71,6 +75,13 @@ public class Animal  implements IAnimalConfig {
         this.energy+=10/divided;
     }
 
-
+    public Color toColor(){
+        if(energy>startingGameEnergy) return new Color(255, 29, 35);
+        if(energy>0.8*startingGameEnergy) return new Color(255, 45, 13);
+        if(energy>0.6*startingGameEnergy) return new Color(148, 9, 13);
+        if(energy>0.4*startingGameEnergy) return new Color(148, 9, 13);
+        if(energy>0.2*startingGameEnergy) return new Color(92, 0, 2);
+        return new Color(68, 5, 5);
+    }
 
 }

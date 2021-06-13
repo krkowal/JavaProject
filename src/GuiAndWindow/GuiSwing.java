@@ -11,7 +11,7 @@ import java.awt.event.ItemListener;
 import java.util.Objects;
 
 public class GuiSwing implements ActionListener, ItemListener {
-    boolean jng=false;
+    boolean doubleWorld=false;
     private final JFrame frame;
     private JComboBox resolution;
     private int guiWidth=800,guiHeight=600;
@@ -19,6 +19,7 @@ public class GuiSwing implements ActionListener, ItemListener {
     private JLabel startingGrassCountLabel,grassIncreaseByDayLabel,energyDecreaseByDayLabel,animalsEnergyLabel,startingAnimalsCountLabel;
     private JLabel startingGrassCountError,grassIncreaseByDayError,energyDecreaseByDayError,animalsEnergyError,startingAnimalsCountError;
     private JTextField startingGrassCount,grassIncreaseByDay,energyDecreaseByDay,animalsEnergy,startingAnimalsCount;
+    private JCheckBox doubleWorldCheckBox;
 
     String [] resolutions = {"800x600","1024x768","1280x720","1366x768","1600x900","1920x1080"};
 
@@ -65,8 +66,8 @@ public class GuiSwing implements ActionListener, ItemListener {
         animalsEnergyError = new JLabel("Wrong animals' energy count");
         startingAnimalsCountError = new JLabel("wrong starting animals' count");
 
-        JCheckBox jungleBox = new JCheckBox("add jungle");
-        jungleBox.addItemListener(this);
+        doubleWorldCheckBox = new JCheckBox("Double worlds");
+        doubleWorldCheckBox.addItemListener(this);
 
         JPanel panel = new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
@@ -99,7 +100,7 @@ public class GuiSwing implements ActionListener, ItemListener {
         panel.add(button2);
         panel.add(widthText);
         panel.add(resolution);
-        panel.add(jungleBox);
+        panel.add(doubleWorldCheckBox);
         panel.add(label);
         animalsEnergyError.setVisible(false);
         energyDecreaseByDayError.setVisible(false);
@@ -175,9 +176,9 @@ public class GuiSwing implements ActionListener, ItemListener {
                     grassIncreaseByDayError.setVisible(true);
                 }
                 if (guiStartingGrassCount >= 0 && guiStartingAnimalsCount >= 2 && guiAnimalEnergy > 0 && guiEnergyDecreaseByDay >= 0 && guiGrassIncreaseByDay >= 0) {
-                    //new Engine(800,800,false,100,2,10,10,1);
-//                    new Engine(guiWidth, guiHeight, jng, guiAnimalEnergy, guiEnergyDecreaseByDay, guiStartingAnimalsCount, guiStartingGrassCount, guiGrassIncreaseByDay);
-                    new Window(guiWidth+15,guiHeight+38,true,"gra",new GeneratedMap(guiWidth/20,guiHeight/20,guiStartingAnimalsCount,guiAnimalEnergy,guiEnergyDecreaseByDay,guiStartingGrassCount,guiGrassIncreaseByDay));
+                    new Window(guiWidth+15,guiHeight+38,"gra",new GeneratedMap(guiWidth/20,guiHeight/20,guiStartingAnimalsCount,guiAnimalEnergy,guiEnergyDecreaseByDay,guiStartingGrassCount,guiGrassIncreaseByDay));
+                    if(doubleWorldCheckBox.isSelected())
+                        new Window(guiWidth+15,guiHeight+38,"gra",new GeneratedMap(guiWidth/20,guiHeight/20,guiStartingAnimalsCount,guiAnimalEnergy,guiEnergyDecreaseByDay,guiStartingGrassCount,guiGrassIncreaseByDay));
                     frame.dispose();
                 }
             } catch (NumberFormatException ex) {
@@ -195,6 +196,6 @@ public class GuiSwing implements ActionListener, ItemListener {
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        jng= e.getStateChange() == ItemEvent.SELECTED;
+        doubleWorld= e.getStateChange() == ItemEvent.SELECTED;
     }
 }

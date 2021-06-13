@@ -17,7 +17,7 @@ public class RenderPanel extends JPanel {
         g.fillRect(0,0,map.getWidth()*20,map.getHeight()*20);
 
         g.setColor(new Color(88, 143, 39));
-        g.fillRect(map.getWidth()/4,map.getHeight()/4, map.getWidth()/2,map.getHeight()/2 );
+        g.fillRect(map.getWidth()*5+15,map.getHeight()*5+38, map.getWidth()*10,map.getHeight()*10 );
 
         for(Field field: map.getFields().values()){
             if(field.grass){
@@ -27,7 +27,7 @@ public class RenderPanel extends JPanel {
         }
         for(Field field:map.getFields().values()){
             if(!field.getAnimals().isEmpty()){
-                g.setColor(new Color(244,67,54));
+                g.setColor(field.getAnimals().get(0).toColor());
                 g.fillRect(field.x*20+5,field.y*20+5,10,10);
             }
         }

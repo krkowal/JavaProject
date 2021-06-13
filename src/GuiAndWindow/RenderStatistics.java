@@ -55,11 +55,11 @@ public class RenderStatistics extends JPanel {
 
     protected void paintComponent (Graphics g){
         super.paintComponent(g);
-        g.drawString("Animals' count = "+countAnimals(),10,10);
-        g.drawString("Grass' count = "+countGrasses(),10,50);
-        g.drawString("Average energy level = "+averageEnergy(),10,90);
-        g.drawString("Average lifespan of dead animals = "+averageDaysAlive(),10,130);
-        g.drawString("Average children count = "+averageChildrenCount(),10,170);
+        g.drawString("Animals' count = "+countAnimals(),20,30);
+        g.drawString("Grass' count = "+countGrasses(),20,50);
+        g.drawString("Average energy level = "+averageEnergy(),20,70);
+        g.drawString("Average lifespan of dead animals = "+averageDaysAlive(),20,90);
+        g.drawString("Average children count = "+averageChildrenCount(),20,110);
 
 
     }

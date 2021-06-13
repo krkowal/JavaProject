@@ -82,10 +82,12 @@ public class Genes {
         return genes.get(randomIndex);
     }
 
-    public void printOut(){
+    public StringBuilder printOut(){
+        StringBuilder str = new StringBuilder();
         for(int i =0;i<32;i++){
-            System.out.println("gene "+(i+1)+ " = "+this.genes.get(i));
+            str.append(genes.get(i));
         }
+        return str;
     }
 
 }

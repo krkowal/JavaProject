@@ -22,12 +22,12 @@ public class Statistics extends JPanel implements ActionListener,KeyListener {
         this.window=window;
         frame = new  JFrame("Statystyki");
         timer = new Timer(2,this);
-        frame.setPreferredSize(new Dimension(200, 400));
-        frame.setMaximumSize(new Dimension(200, 400));
-        frame.setMinimumSize(new Dimension(200, 400));
+        frame.setPreferredSize(new Dimension(300, 130));
+        frame.setMaximumSize(new Dimension(300, 130));
+        frame.setMinimumSize(new Dimension(300, 130));
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        frame.setResizable(false);
+        frame.setResizable(true);
         frame.setVisible(false);
         renderStatistics = new RenderStatistics(map,window);
         frame.add(renderStatistics);
@@ -49,6 +49,14 @@ public class Statistics extends JPanel implements ActionListener,KeyListener {
         char c = e.getKeyChar();
         if(c=='h')
             frame.setVisible(false);
+        if(c=='r') {
+            window.timer.start();
+            timer.start();
+        }
+        if(c=='s') {
+            window.timer.stop();
+            timer.stop();
+        }
     }
 
     @Override

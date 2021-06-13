@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class World {
     public static void main(String[] args) {
-//        GeneratedMap map = new GeneratedMap(2, 2,10,100,2,0,0);
+//        GeneratedMap map = new GeneratedMap(2, 2,0,100,2,0,0);
 //        for(int i= 0;i<100;i++){
 //            map.removeDeadAnimals();
 //            map.moveAnimals();
@@ -17,7 +17,9 @@ public class World {
 //            map.addGrass();
 //            map.decreaseAllAnimalsEnergy();
 //        }
-//        map.placeAnimal(new Animal(map, new Vector2d(2, 2),30,2));
+
+//        Animal a = new Animal(map, new Vector2d(2, 2),30,1);
+//        for(int i=0;i<10;i++)a.decreaseEnergy();
 //          Animal animal = new Animal(map, new Vector2d(2, 2),30,2);
 //        System.out.println(animal.getEnergy());
 //          animal.decreaseEnergy();
@@ -38,7 +40,8 @@ public class World {
 //        map.placeAnimal(new Animal(map,new Vector2d(2,2),2,2));
 //        engine.render();
 //        new Engine(800,600,false,10,2,100,0,0);
-
+//        System.out.println(a.getEnergy());
+//        System.out.println(a.toColor());
         System.out.println(1);
     }
 }

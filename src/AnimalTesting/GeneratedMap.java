@@ -11,6 +11,8 @@ public class GeneratedMap implements IGeneratedMap {
     private ArrayList<Grass> grasses = new ArrayList<>();
     private Random rand = new Random();
     private int howManyFirstAnimals,animalEnergy,energyDecreaseByDay,grassCount,grassIncreaseByDay;
+    private int grassInJungle;
+    private int grassOutsideJungle;
     private Field tempField;
 
     public GeneratedMap(int width, int height,int howManyFirstAnimals,int animalEnergy, int energyDecreaseByDay, int grassCount,int grassIncreaseByDay) {
@@ -21,13 +23,20 @@ public class GeneratedMap implements IGeneratedMap {
         this.energyDecreaseByDay=energyDecreaseByDay;
         this.grassCount=grassCount;
         this.grassIncreaseByDay=grassIncreaseByDay;
+        this.grassOutsideJungle= (int) (grassIncreaseByDay/1.5);
+        this.grassInJungle=grassIncreaseByDay-grassOutsideJungle;
+
         generateFields();
         placeRandomAnimals();
         placeFirstGrasses();
+
     }
     public void addGrass(){
-        for(int i =0;i<grassIncreaseByDay;i++) {
+        for(int i =0;i<grassOutsideJungle;i++) {
             placeGrass(new Grass(this,new Vector2d(rand.nextInt(this.width),rand.nextInt(this.height))));
+        }
+        for(int i=0;i<grassInJungle;i++){
+            placeGrass(new Grass(this,new Vector2d((rand.nextInt(this.width/4*3-this.width/4+1)+this.width/4),rand.nextInt(this.height/4*3-this.height/4+1)+this.height/4)));
         }
     }
 

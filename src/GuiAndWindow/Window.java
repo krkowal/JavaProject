@@ -8,21 +8,24 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Window implements ActionListener,KeyListener, MouseListener {
+public class Window extends Thread implements ActionListener,KeyListener, MouseListener{
     private static final long serialVersionUID = 8578644362229340505L;
     public Timer timer;
     public RenderPanel renderPanel;
     private GeneratedMap map;
     private Statistics stats;
     private ClickOnField click;
-
-    public Window(int width, int height,  String title, GeneratedMap map) {
+    private Thread t1;
+    private int days;
+    public Window(int width, int height,  String title, GeneratedMap map,boolean fileOut) {
         JFrame frame = new  JFrame(title);
-        stats = new Statistics(map,this);
+        stats = new Statistics(map,this,fileOut);
         frame.setPreferredSize(new Dimension(width, height));
         frame.setMaximumSize(new Dimension(width, height));
         frame.setMinimumSize(new Dimension(width, height));
         timer = new Timer(10,this);
+        t1 = new Thread(this);
+
         frame.addKeyListener(this);
         frame.addMouseListener(this);
         this.map=map;
@@ -34,8 +37,8 @@ public class Window implements ActionListener,KeyListener, MouseListener {
 //        frame.add(engine);
         renderPanel = new RenderPanel(map);
         frame.add(renderPanel);
-        startSimulation();
-
+//        startSimulation();
+        t1.start();
 
 
 //        engine.start();
@@ -56,8 +59,12 @@ public class Window implements ActionListener,KeyListener, MouseListener {
             map.animalsCopulateOnFields();
             map.addGrass();
             map.decreaseAllAnimalsEnergy();
-
+            days++;
         }
+    }
+
+    public int getDays() {
+        return days;
     }
 
     @Override
@@ -121,5 +128,8 @@ public class Window implements ActionListener,KeyListener, MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
 
+    }
+    public void run(){
+        timer.start();
     }
 }

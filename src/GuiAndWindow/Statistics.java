@@ -17,19 +17,19 @@ public class Statistics extends JPanel implements ActionListener,KeyListener {
     private JFrame frame;
     private Timer timer;
     private RenderStatistics renderStatistics;
-    public Statistics(GeneratedMap map, Window window){
+    public Statistics(GeneratedMap map, Window window,boolean fileOut){
         this.map=map;
         this.window=window;
         frame = new  JFrame("Statystyki");
         timer = new Timer(2,this);
-        frame.setPreferredSize(new Dimension(300, 130));
-        frame.setMaximumSize(new Dimension(300, 130));
-        frame.setMinimumSize(new Dimension(300, 130));
+        frame.setPreferredSize(new Dimension(400, 210));
+        frame.setMaximumSize(new Dimension(400, 210));
+        frame.setMinimumSize(new Dimension(400, 210));
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.setResizable(true);
         frame.setVisible(false);
-        renderStatistics = new RenderStatistics(map,window);
+        renderStatistics = new RenderStatistics(map,window,fileOut);
         frame.add(renderStatistics);
         frame.addKeyListener(this);
         timer.start();

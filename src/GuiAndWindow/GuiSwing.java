@@ -1,5 +1,7 @@
 package GuiAndWindow;
 
+import AnimalTesting.GeneratedMap;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -157,7 +159,7 @@ public class GuiSwing implements ActionListener, ItemListener {
                     animalsEnergyError.setVisible(true);
                 }
                 int guiEnergyDecreaseByDay = Integer.parseInt(energyDecreaseByDay.getText());
-                if(guiEnergyDecreaseByDay<1){
+                if(guiEnergyDecreaseByDay<0){
                     energyDecreaseByDayError.setVisible(true);
                 }
                 int guiStartingAnimalsCount = Integer.parseInt(startingAnimalsCount.getText());
@@ -172,9 +174,10 @@ public class GuiSwing implements ActionListener, ItemListener {
                 if(guiGrassIncreaseByDay<0){
                     grassIncreaseByDayError.setVisible(true);
                 }
-                if (guiStartingGrassCount >= 0 && guiStartingAnimalsCount >= 2 && guiAnimalEnergy > 0 && guiEnergyDecreaseByDay > 0 && guiGrassIncreaseByDay > 0) {
+                if (guiStartingGrassCount >= 0 && guiStartingAnimalsCount >= 2 && guiAnimalEnergy > 0 && guiEnergyDecreaseByDay >= 0 && guiGrassIncreaseByDay >= 0) {
                     //new Engine(800,800,false,100,2,10,10,1);
-                    new Engine(guiWidth, guiHeight, jng, guiAnimalEnergy, guiEnergyDecreaseByDay, guiStartingAnimalsCount, guiStartingGrassCount, guiGrassIncreaseByDay);
+//                    new Engine(guiWidth, guiHeight, jng, guiAnimalEnergy, guiEnergyDecreaseByDay, guiStartingAnimalsCount, guiStartingGrassCount, guiGrassIncreaseByDay);
+                    new Window(guiWidth+15,guiHeight+38,true,"gra",new GeneratedMap(guiWidth/20,guiHeight/20,guiStartingAnimalsCount,guiAnimalEnergy,guiEnergyDecreaseByDay,guiStartingGrassCount,guiGrassIncreaseByDay));
                     frame.dispose();
                 }
             } catch (NumberFormatException ex) {

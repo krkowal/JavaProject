@@ -8,6 +8,8 @@ public class Animal  implements IAnimalConfig {
     private int energy,energyDecreaseByDay;
     private GeneratedMap map;
     private Genes genes;
+    public int daysAlive=0;
+    public int childrenCount=0;
 
 
     public int getEnergy() {
@@ -53,12 +55,14 @@ public class Animal  implements IAnimalConfig {
         }
 
     }
-
+    public void incrementDaysAlive(){
+        this.daysAlive++;
+    }
     private Vector2d addDirection() {
         return position.addVectors(Objects.requireNonNull(animalDirection.toUnitVector()));
     }
     public void decreaseEnergy(){
-        this.energy-=energyDecreaseByDay;
+        this.energy=this.energy-energyDecreaseByDay;
     }
     public void birthEnergyDecrease(){
         this.energy= AnimalUtil.getAnimalEnergyAfterCopulation(this.energy);
@@ -66,4 +70,7 @@ public class Animal  implements IAnimalConfig {
     public void eat(int divided) {
         this.energy+=10/divided;
     }
+
+
+
 }

@@ -7,23 +7,44 @@ import java.util.Random;
 
 public class Field {
     private GeneratedMap map;
-    private LinkedList<Animal> animals = new LinkedList<>();
+    public LinkedList<Animal> animals = new LinkedList<>();
     private LinkedList<Animal> newAnimals = new LinkedList<>();
-    private int x,y;
+    public LinkedList<Animal> deadAnimals = new LinkedList<>();
+    public int x,y;
+    private boolean isJungle;
+    public int deadAnimalsCount=0;
+    public int daysAliveAmount=0;
 
-    public LinkedList<Animal> getNewAnimals() {
-        return newAnimals;
+
+    public int childrenCount(){
+        int count=0;
+        for(Animal animal:animals){
+            count+=animal.childrenCount;
+        }
+        return count;
     }
 
-    private boolean grass;
-    public Field(GeneratedMap map,int x,int y){
+    public boolean grass;
+    public Field(GeneratedMap map,int x,int y,boolean isJungle){
         this.map=map;
         this.x=x;
         this.y=y;
+        this.isJungle=isJungle;
     }
 
     public LinkedList<Animal> getAnimals() {
         return animals;
+    }
+    public LinkedList<Animal> getNewAnimals() {
+        return newAnimals;
+    }
+
+    @Override
+    public String toString() {
+        return "Field{" +
+                "animals=" + animals +
+                ", newAnimals=" + newAnimals +
+                '}';
     }
 
     private boolean canCopulate(){
@@ -112,7 +133,9 @@ public class Field {
             }
             animals.get(a).birthEnergyDecrease();
             animals.get(b).birthEnergyDecrease();
-            newAnimals.add(new Animal(map,animals.get(a).getPosition(),map.getAnimalEnergy(),map.getEnergyDecreaseByDay(),animals.get(a).getGenes(),animals.get(b).getGenes()));
+            newAnimals.add(new Animal(map,animals.get(a).getPosition(),animals.get(a).getEnergy()/4+animals.get(b).getEnergy()/4,map.getEnergyDecreaseByDay(),animals.get(a).getGenes(),animals.get(b).getGenes()));
+            animals.get(a).childrenCount++;
+            animals.get(b).childrenCount++;
         }
     }
     private int chooseStrongestAnimalsToCopulate(int bound){
@@ -125,13 +148,19 @@ public class Field {
             g.setColor(Color.GREEN);
             g.fillRect(x*20,y*20,20,20);
         }
-        if(animals.isEmpty()){
-            g.setColor(Color.BLUE);
-            g.fillRect(20*x+5,20*y+5,10,10);
-        }
         if(!this.grass){
             g.setColor(Color.RED);
             g.fillRect(x*20,y*20,20,20);
         }
+        if(this.isJungle){
+            g.setColor(Color.YELLOW);
+            g.fillRect(x*20,y*20,20,20);
+        }
+        if(!animals.isEmpty()){
+            g.setColor(Color.BLUE);
+            g.fillRect(20*x+5,20*y+5,10,10);
+        }
+
+
     }
 }

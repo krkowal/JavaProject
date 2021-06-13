@@ -21,7 +21,7 @@ public class Engine extends Canvas implements Runnable{
 	GeneratedMap map;
 
     public Engine(int guiWidth, int guiHeight, boolean jng, int guiAnimalEnergy, int guiEnergyDecreaseByDay, int guiStartingAnimalsCount, int guiStartingGrassCount, int guiGrassIncreaseByDay) {
-        new Window(guiWidth+15,guiHeight+38,jng,"gra",this);
+//        new Window(guiWidth+15,guiHeight+38,jng,"gra",this);
         map= new GeneratedMap(guiWidth/20,guiHeight/20,guiStartingAnimalsCount,guiAnimalEnergy,guiEnergyDecreaseByDay,guiStartingGrassCount,guiGrassIncreaseByDay);
     }
 
@@ -77,6 +77,11 @@ public class Engine extends Canvas implements Runnable{
 				timer+=1000;
 				System.out.println("FPS: "+frames);
 			}
+//			try {
+//				Thread.sleep(100);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
 		}
 		stop();
     }
@@ -103,6 +108,7 @@ public class Engine extends Canvas implements Runnable{
 		g.dispose();
 		bs.show();
 	}
+
     public void mapRender(Graphics g){
         if(map!=null){
 			map.getFields().values().forEach(field->field.render(g));

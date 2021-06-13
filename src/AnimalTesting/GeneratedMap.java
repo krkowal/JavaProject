@@ -31,6 +31,13 @@ public class GeneratedMap implements IGeneratedMap {
         }
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
 
     public void placeFirstGrasses(){
         for(int i=0;i<grassCount;i++){
@@ -68,12 +75,17 @@ public class GeneratedMap implements IGeneratedMap {
     }
 
 
-
+    public void printField() {
+        for(Field field : fields.values()){
+            System.out.println(field);
+        }
+    }
 
     public void decreaseAllAnimalsEnergy(){
         for(Field field: fields.values()){
             for(Animal animal: field.getAnimals()){
                 animal.decreaseEnergy();
+                animal.incrementDaysAlive();
             }
         }
     }
@@ -91,16 +103,32 @@ public class GeneratedMap implements IGeneratedMap {
     }
 
     public void generateFields(){
-        for(int i=0;i<width;i++){
-            for(int j = 0; j<height;j++){
-                this.fields.putIfAbsent(new Vector2d(i,j),new Field(this,i,j));
+        for(int i=0;i<=width;i++){
+            for(int j = 0; j<=height;j++){
+                if(j>15&&j<25&&i>15&&i<30){
+                    this.fields.putIfAbsent(new Vector2d(i,j),new Field(this,i,j,true));
             }
+                else{
+                    this.fields.putIfAbsent(new Vector2d(i,j), new Field(this,i,j,false));
+                }
         }
+        }
+
     }
     public void removeDeadAnimals(){
         for(Field field:fields.values()){
-            field.getAnimals().removeIf(animal -> animal.getEnergy() <= 0);
+            for(Animal animal :field.getAnimals()){
+                if(animal.getEnergy()<=0){
+                    field.daysAliveAmount+=animal.daysAlive;
+                    field.deadAnimals.add(animal);}
+            }
+            field.deadAnimalsCount+=field.deadAnimals.size();
+            for(Animal animal:field.deadAnimals){
+                field.getAnimals().remove(animal);
+            }
+            field.deadAnimals.clear();
         }
+
     }
     public void animalsEatOnFields(){
         for(Field field: fields.values()){

@@ -7,6 +7,7 @@ public class Genes {
     private ArrayList<Integer> genes = new ArrayList<>();
     private Random rand = new Random();
     public Genes (){}
+
     public Genes(Genes genes1, Genes genes2){
         inheritedGenes(genes1.getGenes(),genes2.getGenes());
     }

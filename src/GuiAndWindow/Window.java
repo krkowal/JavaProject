@@ -1,15 +1,14 @@
 package GuiAndWindow;
 
-import AnimalTesting.Animal;
-import AnimalTesting.GeneratedMap;
-import AnimalTesting.Vector2d;
+import AnimalSettings.Animal;
+import WorldSettings.GeneratedMap;
+import WorldSettings.Vector2d;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 public class Window extends Thread implements ActionListener,KeyListener, MouseListener{
-    private static final long serialVersionUID = 8578644362229340505L;
     public Timer timer;
     public RenderPanel renderPanel;
     private GeneratedMap map;
@@ -34,20 +33,11 @@ public class Window extends Thread implements ActionListener,KeyListener, MouseL
         frame.setResizable(true);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-//        frame.add(engine);
         renderPanel = new RenderPanel(map);
         frame.add(renderPanel);
-//        startSimulation();
         t1.start();
-
-
-//        engine.start();
-
-
     }
-    public void startSimulation(){
-        timer.start();
-    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {

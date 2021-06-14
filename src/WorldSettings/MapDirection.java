@@ -1,4 +1,4 @@
-package AnimalTesting;
+package WorldSettings;
 
 public enum MapDirection {
     NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST,WEST,NORTHWEST;

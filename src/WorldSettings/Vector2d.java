@@ -1,4 +1,4 @@
-package AnimalTesting;
+package WorldSettings;
 
 import java.util.Objects;
 

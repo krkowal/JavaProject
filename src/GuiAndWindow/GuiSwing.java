@@ -1,6 +1,6 @@
 package GuiAndWindow;
 
-import AnimalTesting.GeneratedMap;
+import WorldSettings.GeneratedMap;
 
 import javax.swing.*;
 import java.awt.*;
@@ -53,7 +53,7 @@ public class GuiSwing implements ActionListener, ItemListener {
         JLabel animalsHeader = new JLabel("Animals");
         Font font = new Font("Courier", Font.BOLD, 15);
         animalsHeader.setFont(font);
-        JLabel worldSettingsHeader = new JLabel("World");
+        JLabel worldSettingsHeader = new JLabel("WorldSettings");
         worldSettingsHeader.setFont(font);
         startingGrassCountLabel = new JLabel("How many starting grasses");
         grassIncreaseByDayLabel = new JLabel("How many new grasses per day");

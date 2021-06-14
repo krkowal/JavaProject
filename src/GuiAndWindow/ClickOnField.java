@@ -1,7 +1,7 @@
 package GuiAndWindow;
 
-import AnimalTesting.Animal;
-import AnimalTesting.GeneratedMap;
+import AnimalSettings.Animal;
+import WorldSettings.GeneratedMap;
 
 import javax.swing.*;
 import java.awt.*;

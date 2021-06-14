@@ -1,4 +1,4 @@
-package AnimalTesting;
+package AnimalSettings;
 
 public class AnimalUtil {
     public static int getAnimalEnergyAfterCopulation(int energy){

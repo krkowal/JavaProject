@@ -1,6 +1,8 @@
-package AnimalTesting;
+package WorldSettings;
 
-import javax.imageio.plugins.tiff.ExifGPSTagSet;
+import AnimalSettings.Animal;
+import WorldSettings.GeneratedMap;
+
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.Random;

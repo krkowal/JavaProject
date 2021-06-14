@@ -1,4 +1,8 @@
-package AnimalTesting;
+package AnimalSettings;
+
+import Interfaces.IGrassConfig;
+import WorldSettings.GeneratedMap;
+import WorldSettings.Vector2d;
 
 public class Grass implements IGrassConfig {
     public Vector2d position;

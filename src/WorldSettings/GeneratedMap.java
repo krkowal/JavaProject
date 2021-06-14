@@ -1,13 +1,16 @@
-package AnimalTesting;
+package WorldSettings;
 
-import java.awt.*;
+import AnimalSettings.Animal;
+import AnimalSettings.Grass;
+import Interfaces.IGeneratedMap;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class GeneratedMap implements IGeneratedMap {
     private int width, height;
-    private ConcurrentHashMap<Vector2d,Field> fields = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<Vector2d, Field> fields = new ConcurrentHashMap<>();
     private ArrayList<Grass> grasses = new ArrayList<>();
     private Random rand = new Random();
     private int howManyFirstAnimals,animalEnergy,energyDecreaseByDay,grassCount,grassIncreaseByDay;
@@ -81,13 +84,6 @@ public class GeneratedMap implements IGeneratedMap {
             }
         }
         clearNewAnimalArray();
-    }
-
-
-    public void printField() {
-        for(Field field : fields.values()){
-            System.out.println(field);
-        }
     }
 
     public void decreaseAllAnimalsEnergy(){
@@ -169,40 +165,6 @@ public class GeneratedMap implements IGeneratedMap {
         return fields;
     }
 
-    public void paint(Graphics g) {
-    }
-
-//    public Object objectAt(Vector2d position) {
-//        for (Vector2d animal : fields.keys()) {
-//            if (compareAnimalPosition(animal, position)) {
-//                return animal;
-//            }
-//        }
-//        for (Grass grass : grasses) {
-//            if (compareGrassPosition(grass, position)) {
-//                return grass;
-//            }
-//        }
-//        return null;
-//    }
-
-//    public Animal animalAt(Vector2d position) {
-//        for (Animal animal : fields) {
-//            if (compareAnimalPosition(animal, position)) {
-//                return animal;
-//            }
-//        }
-//        return null;
-//    }
-//
-//    public Grass grassAt(Vector2d position) {
-//        for (Grass grass : grasses) {
-//            if (compareGrassPosition(grass, position)) {
-//                return grass;
-//            }
-//        }
-//        return null;
-//    }
 
     public boolean compareAnimalPosition(Animal animal, Vector2d position) {
         return animal.getPosition().x == position.x && animal.getPosition().y == position.y;
@@ -211,32 +173,5 @@ public class GeneratedMap implements IGeneratedMap {
     public boolean compareGrassPosition(Grass grass, Vector2d position) {
         return grass.getPosition().x == position.x && grass.getPosition().y == position.y;
     }
-
-//    public void giveBirth(Animal animal1, Animal animal2) {
-//        Animal animal = new Animal(this, animal1.getPosition(), animal1.getGenes(), animal2.getGenes());
-//        fields.get(animal);
-//        animal1.birthEnergyDecrease();
-//        animal2.birthEnergyDecrease();
-//    }
-
-//    public void printEnergies() {
-//        for (Animal el : fields) {
-//            System.out.println(el.getEnergy());
-//        }
-//    }
-//
-//    public void printPositions() {
-//        for (Animal el : fields) {
-//            System.out.println(el.getPosition());
-//        }
-//    }
-
-//    public boolean animalOnGrass(Vector2d position) {
-//        return grassAt(position) != null;
-//    }
-//
-//    public void removeGrass(Vector2d position) {
-//        grasses.remove(grassAt(position));
-//    }
 
 }

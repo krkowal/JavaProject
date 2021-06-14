@@ -1,4 +1,7 @@
-package AnimalTesting;
+package Interfaces;
+
+import AnimalSettings.Genes;
+import WorldSettings.Vector2d;
 
 public interface IAnimalConfig {
     int energy = 10;

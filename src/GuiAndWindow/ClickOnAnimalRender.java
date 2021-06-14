@@ -1,9 +1,9 @@
 package GuiAndWindow;
 
-import AnimalTesting.Animal;
-import AnimalTesting.GeneratedMap;
-import AnimalTesting.Genes;
-import AnimalTesting.Vector2d;
+import AnimalSettings.Animal;
+import WorldSettings.GeneratedMap;
+import AnimalSettings.Genes;
+import WorldSettings.Vector2d;
 
 import javax.swing.*;
 import java.awt.*;

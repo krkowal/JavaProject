@@ -1,4 +1,9 @@
-package AnimalTesting;
+package AnimalSettings;
+
+import Interfaces.IAnimalConfig;
+import WorldSettings.GeneratedMap;
+import WorldSettings.MapDirection;
+import WorldSettings.Vector2d;
 
 import java.awt.*;
 import java.util.Objects;

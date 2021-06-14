@@ -1,8 +1,8 @@
 package GuiAndWindow;
-import AnimalTesting.Animal;
-import AnimalTesting.Field;
-import AnimalTesting.GeneratedMap;
-import AnimalTesting.Genes;
+import AnimalSettings.Animal;
+import WorldSettings.Field;
+import WorldSettings.GeneratedMap;
+import AnimalSettings.Genes;
 
 import javax.swing.*;
 import java.awt.*;
@@ -114,7 +114,6 @@ public class RenderStatistics extends JPanel {
                     fw = new FileWriter(w1);
                     bw = new BufferedWriter(fw);
                     bw.write(window.getDays()+","+countAnimals()+","+countGrasses()+","+averageEnergy()+","+averageDaysAlive()+","+averageChildrenCount()+","+getDominantGenes().printOut());
-                    bw.newLine();
                     bw.close();
                 } catch (IOException e) {
                     e.printStackTrace();

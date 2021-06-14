@@ -1,4 +1,4 @@
-package AnimalTesting;
+package AnimalSettings;
 
 import java.util.ArrayList;
 import java.util.Random;

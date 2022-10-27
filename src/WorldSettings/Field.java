@@ -20,6 +20,7 @@ public class Field {
 
     public int childrenCount(){
         int count=0;
+//        animals.forEach(animal -> count+=animal.childrenCount);
         for(Animal animal:animals){
             count+=animal.childrenCount;
         }

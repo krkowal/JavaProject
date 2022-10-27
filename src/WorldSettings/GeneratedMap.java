@@ -71,40 +71,58 @@ public class GeneratedMap implements IGeneratedMap {
     }
 
     public void moveAnimals(){
-        for(Field field: fields.values()){
-            for(Animal animal : field.getAnimals()){
-                animal.move();
-                field.getNewAnimals().add(animal);
-            }
-        }
+        fields.values().forEach(field ->
+                field.getAnimals().forEach(animal -> {
+                    animal.move();
+                    field.getNewAnimals().add(animal);
+                }));
         clearAnimalArray();
-        for(Field field: fields.values()){
-            for(Animal animal:field.getNewAnimals()){
-                fields.get(animal.getPosition()).getAnimals().add(animal);
-            }
-        }
+        fields.values().forEach(field ->
+                field.getNewAnimals().forEach(animal ->fields.get(animal.getPosition())
+                        .getAnimals().add(animal)
+                ));
         clearNewAnimalArray();
+//        for(Field field: fields.values()){
+//            for(Animal animal : field.getAnimals()){
+//                animal.move();
+//                field.getNewAnimals().add(animal);
+//            }
+//        }
+//        clearAnimalArray();
+//        for(Field field: fields.values()){
+//            for(Animal animal:field.getNewAnimals()){
+//                fields.get(animal.getPosition()).getAnimals().add(animal);
+//            }
+//        }
+//        clearNewAnimalArray();
     }
 
     public void decreaseAllAnimalsEnergy(){
-        for(Field field: fields.values()){
-            for(Animal animal: field.getAnimals()){
-                animal.decreaseEnergy();
-                animal.incrementDaysAlive();
-            }
-        }
+        fields.values().forEach(field ->
+                field.getAnimals().forEach(animal -> {
+                    animal.decreaseEnergy();
+                    animal.incrementDaysAlive();
+                }));
+//        for(Field field: fields.values()){
+//            for(Animal animal: field.getAnimals()){
+//                animal.decreaseEnergy();
+//                animal.incrementDaysAlive();
+//            }
+//        }
     }
 
     private void clearNewAnimalArray() {
-        for(Field field: fields.values()){
-            field.getNewAnimals().clear();
-        }
+        fields.values().forEach(field -> field.getNewAnimals().clear());
+//        for(Field field: fields.values()){
+//            field.getNewAnimals().clear();
+//        }
     }
 
     private void clearAnimalArray() {
-        for(Field field: fields.values()){
-            field.getAnimals().clear();
-        }
+        fields.values().forEach(field -> field.getAnimals().clear());
+//        for(Field field: fields.values()){
+//            field.getAnimals().clear();
+//        }
     }
 
     public void generateFields(){
@@ -121,30 +139,45 @@ public class GeneratedMap implements IGeneratedMap {
 
     }
     public void removeDeadAnimals(){
-        for(Field field:fields.values()){
-            for(Animal animal :field.getAnimals()){
-                if(animal.getEnergy()<=0){
+        fields.values().forEach(field ->{
+            field.getAnimals().forEach(animal ->{
+                if(animal.getEnergy() <= 0){
                     field.daysAliveAmount+=animal.daysAlive;
-                    field.deadAnimals.add(animal);}
-            }
-            field.deadAnimalsCount+=field.deadAnimals.size();
-            for(Animal animal:field.deadAnimals){
-                field.getAnimals().remove(animal);
-            }
+                    field.deadAnimals.add(animal);
+                }
+            });
+            field.deadAnimalsCount += field.deadAnimals.size();
+            field.deadAnimals.forEach(animal -> field.getAnimals().remove(animal));
             field.deadAnimals.clear();
-        }
+        });
+//        for(Field field:fields.values()){
+//            for(Animal animal :field.getAnimals()){
+//                if(animal.getEnergy()<=0){
+//                    field.daysAliveAmount+=animal.daysAlive;
+//                    field.deadAnimals.add(animal);}
+//            }
+//            field.deadAnimalsCount+=field.deadAnimals.size();
+//            for(Animal animal:field.deadAnimals){
+//                field.getAnimals().remove(animal);
+//            }
+//            field.deadAnimals.clear();
+//        }
 
     }
     public void animalsEatOnFields(){
-        for(Field field: fields.values()){
-            if(!field.getAnimals().isEmpty())
-                field.eatGrass();
-        }
+        fields.values().forEach(field -> {
+            if(!field.getAnimals().isEmpty()) field.eatGrass();
+        });
+//        for(Field field: fields.values()){
+//            if(!field.getAnimals().isEmpty())
+//                field.eatGrass();
+//        }
     }
     public void animalsCopulateOnFields(){
-        for(Field field:fields.values()){
-            field.copulate();
-        }
+        fields.values().forEach(Field::copulate);
+//        for(Field field:fields.values()){
+//            field.copulate();
+//        }
     }
 
 

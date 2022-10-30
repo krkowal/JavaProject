@@ -8,13 +8,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Window extends Thread implements ActionListener,KeyListener, MouseListener{
+public class Window  implements ActionListener,KeyListener, MouseListener{
     public Timer timer;
     public RenderPanel renderPanel;
     private GeneratedMap map;
     private Statistics stats;
-    private ClickOnField click;
-    private Thread t1;
     private int days;
     public Window(int width, int height,  String title, GeneratedMap map,boolean fileOut) {
         JFrame frame = new  JFrame(title);
@@ -23,7 +21,6 @@ public class Window extends Thread implements ActionListener,KeyListener, MouseL
         frame.setMaximumSize(new Dimension(width, height));
         frame.setMinimumSize(new Dimension(width, height));
         timer = new Timer(10,this);
-        t1 = new Thread(this);
 
         frame.addKeyListener(this);
         frame.addMouseListener(this);
@@ -35,7 +32,7 @@ public class Window extends Thread implements ActionListener,KeyListener, MouseL
         frame.setVisible(true);
         renderPanel = new RenderPanel(map);
         frame.add(renderPanel);
-        t1.start();
+        timer.start();
     }
 
 
@@ -100,7 +97,7 @@ public class Window extends Thread implements ActionListener,KeyListener, MouseL
         System.out.println(new Vector2d((x-10)/20,(y-25)/20));
         if(!map.getFields().get(new Vector2d((x-10)/20,(y-25)/20)).getAnimals().isEmpty()){
             Animal selectedAnimal = map.getFields().get(new Vector2d((x-10)/20,(y-25)/20)).getAnimals().get(0);
-            click = new ClickOnField(this.map,this,selectedAnimal);
+            ClickOnField click = new ClickOnField(this.map, this, selectedAnimal);
 
         }
     }
@@ -119,7 +116,5 @@ public class Window extends Thread implements ActionListener,KeyListener, MouseL
     public void mouseExited(MouseEvent e) {
 
     }
-    public void run(){
-        timer.start();
-    }
+
 }
